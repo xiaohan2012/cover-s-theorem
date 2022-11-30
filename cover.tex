@@ -1,0 +1,160 @@
+\begin{frame}{Context 1: extreme classification using random label partitions }
+  \begin{itemize}[<+->]
+  \item  classification with \hl{large label space}: \head{scalability} is a challenge
+  \item {\head{label-partitioning approach}: group labels into \hl{meta-labels} using some partitioning scheme, and learn classifiers on the meta-labels
+      \begin{itemize}
+      \item essentially reducing a large classification problems into \hl{smaller problems}
+      \end{itemize}
+    }
+  \item {a recent scheme uses \hl{random partitioning}
+      \begin{itemize}
+      \item each label are put into one of $K$ partitions with equal probability
+      \item resulting in $K$ \hl{nearly-balanced partitions}
+      \end{itemize}
+    }
+  \item {it looks naive but yields \hl{competitive empirical performance}. \txtdgreen{Why?}}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Context 2: Cover's theorem }
+  Cover's theorem (aka \textit{Function Counting Theorem}) roughly says
+
+  \begin{block}{}
+    given a set of $N$ data points $X$ in $\real^{d}$ and a dichotomy of $X$, $(\Xpos, \Xneg)$, \\
+    \medskip\pause
+    $d$ being \hl{large} makes $(\Xpos, \Xneg)$ \hl{more likely} to be \hl{linearly separable}
+    \medskip
+    \\than $d$ being \hl{small}
+  \end{block}
+\end{frame}
+
+\begin{frame}{Question}
+
+  \begin{itemize}[<+->]
+  \item given $N$ points $X$ in $\real^d$
+  \item[] {and a random partitioning of $X$ into $X_1, \ldots, X_K$
+      \begin{itemize}
+      \item each point in $X$ is assigned to one of $X_i$ with equal probability at random
+      \end{itemize}
+    }
+  \item {
+      \head{question:} what is
+      \[\proba{X_i \isls \text{ from } \compl{X_i}, \forall i\in\spr{K}}\quad?\]
+  }
+  \end{itemize}
+  \pause
+  \head{remark:} for $K=2$, the answer is Cover's theorem
+    % Can we use Cover's theorem to \\
+    % \medskip
+    % \hl{theoretically explain} the good performance of the random partitioning scheme?
+
+
+\end{frame}
+
+\begin{frame}{Cover's theorem}
+  \begin{itemize}[<+->]
+  \item  {given a set of $N$ points $X$ in $\real^{d}$
+      \begin{itemize}
+      \item additional assumption: $X$ are in general positions
+      \end{itemize}
+    }
+  \item   let $C(N, d)$ be the number of dichotomies of $X$ that are linearly separably.
+  \item {  Cover's theorem states that
+      \[
+        C(N, d) = 2 \sum\limits_{k=0}^{k=d-1}\binom{N-1}{k}
+      \]
+    }
+  \end{itemize}  
+      
+\end{frame}
+
+\begin{frame}{Implications of Cover's theorem}
+  \begin{itemize}[<+->]
+  \item there are $2^N$ unique dichotomies of $N$ points
+  \item (assume each dichotomy has equal chance of being drawn)
+  \item {let $P(N, d)$ be the probability that a random dichotomy is linearly separable}
+  \item {Cover's theorem implies
+      \[
+        P(N, d) = \pr{1/2}^{N-1} \sum\limits_{k=0}^{k=d-1}\binom{N-1}{k}
+      \]
+    }
+  \item $P(N, d)$ is just the \hl{cumulative binomial distribution} corresponding to the probability that $N-1$ flips of a fair coin result in $d-1$ or fewer heads. 
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Proof of Cover's theorem}
+  main idea:
+  \begin{itemize}[<+->]
+  \item consider adding a new point $y$ into the current set of $N$ points
+  \item {for each dichotomy $\bipart$, there are two possibilites:}
+  \item {\hl{case 1}: $\exists$ a separating hyperplane $w^T x = b$ that contains $y$
+      \begin{itemize}
+      \item we can put $y$ on either side, both $\pr{\Xpos \cup \set{y}, \Xneg}$ and $\pr{\Xpos, \Xneg \cup \set{y}}$ are linearly separable $\rightarrow$ 2 new dichotomies
+      \end{itemize}
+    }
+  \item {\hl{case 2}: $\not\exists$ such separating hyperplane
+      \begin{itemize}
+      \item either $\pr{\Xpos \cup \set{y}, \Xneg}$ or  $\pr{\Xpos, \Xneg \cup \set{y}}$ \isls $\rightarrow$ 1 new dichotomy
+      \end{itemize}
+    }
+  \item {say there are $D$ dichotomies of case 1, we have
+      \[C(N+1, d) = C(N, d) - D + 2D = C(N, d) + D\]
+    }
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{A formula for $D$?}
+  \begin{itemize}[<+->]
+  \item recall that a ``case-1'' $\bipart$ \isls by a hyperplane containing $y$
+  \item $\Longrightarrow$ $\bipart$ \isls in a $\pr{d-1}$-dimensional space
+  \item $\Longrightarrow$ \hl{$D=C(N, d-1)$}
+  \item {therefore
+      \[
+        C(N+1, d) = C(N, d) + C(N, d-1)
+      \]
+    }
+  \item by expanding the above and using the base case $C(1, d)=2$ for $d>1$, we conlude the proof
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Generalizing to $K$-way partitioning}
+  define:
+
+  \[C(N, d, K) = \text{ \# of $K$-way partitionings of $X \in \real^d$ that are linearly separable}\]
+
+\end{frame}
+
+\begin{frame}
+
+  \begin{claim}
+    \[C(N, d, K) \ge \sum_{m=0}^{N} {N \choose m} C(N-m, d-m, k-1)\]
+  \end{claim}
+  Consider bipartitioning $X$ into $\pr{X_1, \compl{X_1}}$, where $\abs{X_1}=m$ and $\abs{\compl{X_1}}=N-m$ $\longrightarrow$ ${N \choose m}$ ways to choose $X_1$.
+
+  % The term ${N \choose m} C(N-m, d-m, K-1)$ is equivalent to the number of $K$-way linearly-separable partitionings s.t. one of the separating hyperplane passes through $X_1$. 
+  % Consider partitioning $\compl{X_1}$ into $k-1$ linearly-separable sets, we show that there are at least $C(N-m, d-m, k-1)$ such partitionings.
+
+  % The term $C(N-m, d-m, k-1)$ is the number of $\pr{k-1}$-way partitionings that are separable by a $\pr{d-m}$-dimensional hyperplane. Such hyperplane is equivalent to requiring it to pass through $X_1$. 
+\end{frame}  
+
+\begin{frame}{What $P(N, d)$ looks like}
+  \begin{itemize}[<+->]
+  \item \url{https://en.wikipedia.org/wiki/Binomial\_distribution}
+  \item {say $N$ is fixed, there is some ``threshold point'' on $d$ such that $P(N, d)$ rises to 1 rapidly}
+  \item {such threshold is $d=N/2$}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Implications of Cover's theorem}
+  \begin{itemize}[<+->]
+  \item $2d$ is called the \hl{separating capacity} of hyperplanes in $\real^{d}$.
+  \item[] meaning that:
+  \item given a \hl{sufficiently small} set of points $X$, i.e., \hl{$\abs{X} \le 2 d$} in $\real^{d}$ and a random dichotomy of it, $\bipart$
+  \item {we have
+      \[
+        \text{Pr}\spr{\bipart \isls } \approx 1
+      \]
+    }
+  \end{itemize}
+\end{frame}

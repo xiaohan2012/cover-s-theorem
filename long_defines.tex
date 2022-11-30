@@ -1,0 +1,59 @@
+\newcommand{\sectionslide}[1]{
+\begin{frame}
+\vfill
+\begin{center}   
+{\large #1}  
+\end{center}
+\vfill
+\end{frame}}
+
+
+\newcommandx*{\imageslide}[3][3=0.7]{
+\begin{frame}
+\vfill
+\begin{center}   
+  \includegraphics[width=#3\textwidth]{#2}
+
+  \smallskip  
+ {\large #1}
+\end{center}
+\vfill
+\end{frame}
+}
+
+
+\newcommand{\tikzgraphstyles}{
+\tikzstyle{textbox}=[inner sep=0pt]
+\tikzstyle{node}=[circle, minimum size=18pt, inner sep=3pt, fill=gray!50, text=white]
+\tikzstyle{processed}=[fill=red!50]
+\tikzstyle{edge}=[draw=gray, very thick]
+\tikzstyle{uedge}=[draw=gray, very thick]
+\tikzstyle{bedge}=[draw=gray, very thick, <->]
+\tikzstyle{edgelabel}=[above=0.25em]
+}
+
+
+
+\newcommand{\brows}[1]{%
+  \begin{bmatrix}
+    \begin{array}{@{\protect\rotvert\;}c@{\;\protect\rotvert}}
+      #1
+    \end{array}
+  \end{bmatrix}
+}
+\newcommand{\rotvert}{\rotatebox[origin=c]{90}{$\vert$}}
+\newcommand{\rowsvdots}{\multicolumn{1}{@{}c@{}}{\vdots}}
+
+\newcommand{\twocols}[2]{
+  \begin{minipage}{0.48\textwidth}
+    #1
+  \end{minipage}
+  \begin{minipage}{0.48\textwidth}
+    #2
+  \end{minipage}    
+}
+
+\tikzset{%
+  point/.style={circle, inner sep=2pt}, 
+  other point/.style={fill=black, point}  
+}
