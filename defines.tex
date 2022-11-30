@@ -1,0 +1,160 @@
+% \newtheorem{theorem}{Theorem}
+%\newtheorem{lemma}{Lemma}
+%\newtheorem{problem}{Problem}
+%\newtheorem{definition}{Definition}
+%\newtheorem{corollary}{Corollary}
+
+\renewcommand{\baselinestretch}{1.1} 
+\setlength{\parskip}{\bigskipamount}
+
+% \usepackage{biblatex}
+% \usepackage[numbers]{natbib}
+\usepackage{tikz}
+\usetikzlibrary{tikzmark,fit,shapes.geometric,arrows,arrows.meta}
+\usetikzlibrary{trees}
+\usepackage{pgfplots}
+
+\usepackage{wrapfig}
+\usepackage[english]{babel}
+\usepackage{bbm}
+% or whatever
+\usepackage[latin1]{inputenc}
+% or whatever
+\usepackage{times}
+\usepackage{bm}
+\usepackage[T1]{fontenc}
+% Or whatever. Note that the encoding and the font should match. If T1
+% does not look nice, try deleting the line with the fontenc.
+
+\usepackage{bibentry}
+\usepackage{algorithm, setspace}
+%\usepackage[noend]{algorithmic}
+\usepackage{algpseudocode}
+
+\usepackage{array}
+\usepackage{amsmath}
+\usepackage{xspace}
+\usepackage{dsfont}
+% \usepackage{tocloft}
+% \setlength{\cftbeforesecskip}{10pt}
+\usepackage{booktabs} % For nice tables
+
+\usetikzlibrary{shadows}
+\usetikzlibrary{positioning}
+\usepackage{xcolor}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage{tkz-berge,float}
+\usepackage{makecell}
+\usepackage{amsmath,amssymb}
+
+\usepackage{booktabs} % For formal tables
+\usepackage{graphicx}
+\usepackage{adjustbox}
+\usepackage{epsfig}
+
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usetikzlibrary{shadows}
+\usepackage{xcolor}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage{tkz-berge,float}
+
+\usepackage{xargs}
+\usepackage{fontawesome}
+% \usepgfplotslibrary{external}
+% \usetikzlibrary{external}
+% \tikzexternalize
+
+% AALTO COLORS
+\definecolor{aaltoyellow}{RGB}{254,203,00}  % FECB00
+\definecolor{aaltored}{RGB}{237,41,57}      % ED2939
+\definecolor{aaltoblue}{RGB}{00,101,189}    % 0065BD
+\definecolor{aaltogray}{RGB}{146,139,129}   % 928B81
+\definecolor{aaltolgreen}{RGB}{105,190,40}  % 69BE28
+\definecolor{aaltodgreen}{RGB}{00,155,58}   % 009B3A
+\definecolor{aaltocyan}{RGB}{00,168,180}    % 00A8B4
+\definecolor{aaltopurple}{RGB}{102,57,183}  % 6639B7
+\definecolor{aaltomagenta}{RGB}{177,05,157} % B1059D
+\definecolor{aaltoorange}{RGB}{237,101,00}  % FF7900
+
+% Set caption separation
+\setlength{\abovecaptionskip}{3pt plus 3pt minus 2pt}
+
+\newcommand{\txtred}[1]{{\color{aaltored}{#1}}}
+\newcommand{\txtblue}[1]{{\color{aaltoblue}{#1}}}
+\newcommand{\txtyellow}[1]{{\color{aaltoyellow}{#1}}}
+\newcommand{\txtorange}[1]{{\color{aaltoorange}{#1}}}
+\newcommand{\txtdgreen}[1]{{\color{aaltodgreen}{#1}}}
+\newcommand{\txtgreen}[1]{{\color{aaltolgreen}{#1}}}
+\newcommand{\txtmagenta}[1]{{\color{aaltomagenta}{#1}}}
+\newcommand{\txtpurple}[1]{{\color{aaltopurple}{#1}}}
+\newcommand{\txtgray}[1]{{\color{aaltogray}{#1}}}
+\newcommand{\txtcyan}[1]{{\color{aaltocyan}{#1}}}
+
+\newcommand{\hl}[1]{\txtblue{#1}}
+\newcommand{\head}[1]{\txtmagenta{#1}}
+\newcommand{\colorcite}[1]{{\color{aaltogray}{\cite{#1}}}}
+\newcommand{\colorcitet}[1]{{\color{aaltogray}{\citet{#1}}}}
+\newcommand{\colorcitep}[1]{{\color{aaltogray}{\citep{#1}}}}
+
+\newcommand{\imgsource}[1]{{\footnotesize \color{aaltogray}{Image source: #1}}}
+\newcommand{\inlinecomment}[1]{{\footnotesize \textit{#1}}}
+
+\DeclareMathOperator*{\argmin}{\arg\min}
+\DeclareMathOperator*{\argmax}{\arg\max}
+
+\newtheorem{proposition}{Proposition}
+\newtheorem{claim}{Claim}
+% \newtheorem*{problem*}{Problem}
+% \newtheorem*{theorem*}{Theorem}
+% \newtheorem*{definition*}{Definition}
+
+\newcommand{\spara}[1]{\smallskip\noindent{\bf{#1}}}
+\newcommand{\set}[1]{\left\{#1\right\}}
+\newcommand{\abs}[1]{{\left|#1\right|}}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\real}{\ensuremath{\mathbb{R}}\xspace}
+\newcommand{\hamming}{\ensuremath{\mathbb{H}}\xspace}
+\newcommand{\realnn}{\ensuremath{\real_{\ge 0}}\xspace}
+\newcommand{\pr}[1]{\left(#1\right)}
+\newcommand{\spr}[1]{\left[#1\right]}
+\newcommand{\define}{\leftarrow}
+
+\newcommand{\vw}{\ensuremath{\bm{w}}\xspace}
+\newcommand{\mW}{\ensuremath{\bm{W}}\xspace}
+\newcommand{\vx}{\ensuremath{\bm{x}}\xspace}
+\newcommand{\vy}{\ensuremath{\bm{y}}\xspace}
+\newcommand{\vz}{\ensuremath{\bm{z}}\xspace}
+\newcommand{\vs}{\ensuremath{\bm{s}}\xspace}
+\newcommand{\vh}{\ensuremath{\bm{h}}\xspace}
+\newcommand{\vb}{\ensuremath{\bm{b}}\xspace}
+\newcommand{\vc}{\ensuremath{\bm{c}}\xspace}
+
+\newcommand{\Xset}{\ensuremath{\mathcal{X}}\xspace}
+\newcommand{\Lset}{\ensuremath{\mathcal{L}}\xspace}
+\newcommand{\Lpset}{\ensuremath{\mathcal{L}^{'}}\xspace}
+\newcommand{\Lp}{\ensuremath{L^{'}}\xspace}
+\newcommand{\dbset}{\ensuremath{(\Lset+\Lpset)^H}\xspace}
+\newcommand{\simf}{\ensuremath{\text{sim}}\xspace}
+\newcommand{\distf}{\ensuremath{d}\xspace}
+\newcommand{\simham}{\ensuremath{\simf^H}\xspace}
+\newcommand{\dham}{\ensuremath{\distf_H}\xspace}
+\newcommand{\sign}{\ensuremath{\text{sgn}}\xspace}
+\newcommand{\hamdim}{\ensuremath{K}\xspace}
+
+
+% \newcommand{\dim}{\ensuremath{d}\xspace}
+\newcommand{\Xpos}{\ensuremath{X^{+}}\xspace}
+\newcommand{\Xneg}{\ensuremath{X^{-}}\xspace}
+
+\newcommand{\proba}[1]{\ensuremath{\text{Pr}\spr{#1}}\xspace}
+\newcommand{\isls}{\ensuremath{\text{ is linearly separable}}\xspace}
+\newcommand{\bipart}{\ensuremath{\pr{\Xpos, \Xneg}}\xspace}
+\newcommand{\kpart}{\ensuremath{\pr{X_i}_{i=1}^K}\xspace}
+\newcommand{\compl}[1]{\ensuremath{\overline{#1}}\xspace}
+
+\newcommand{\indicator}[1]{\ensuremath{\mathbbm{1}\spr{#1}}\xspace}
+
+\newcommand\half{\frac{1}{2}\xspace}
+\newcommand\halfn{\pr{\half}^{n}\xspace}
